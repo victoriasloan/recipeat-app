@@ -11,9 +11,11 @@
     "react-scripts": "3.3.0"
   },
   "scripts": {
+    "prestart": "tailwind build ./src/index.tailwind.css -c ./tailwind.config.js -o ./src/index.css",
     "start": "react-scripts start",
+    "prebuild": "tailwind build ./src/index.tailwind.css -c ./tailwind.config.js -o ./src/index.css",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -30,5 +32,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^1.1.4"
   }
 }
