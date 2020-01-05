@@ -1,15 +1,39 @@
-import React from "react";
-import Button from "./components/button";
+import React, { useEffect, useState } from "react";
+import Recipe from "./components/Recipe";
+const App = () => {
+  const APP_ID = "e74fe7a6";
+  const API_KEY = "8c5d31e7816e4c8b54e498f9ac5b7377";
 
-function App() {
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    getRecipes();
+  }, []);
+
+  const getRecipes = async () => {
+    const response = await fetch(
+      `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${API_KEY}`
+    );
+
+    const recipeData = await response.json();
+
+    console.log(recipeData, "recipe data");
+    setRecipes(recipeData.hits);
+  };
+
   return (
-    <div className="flex flex-col w-3/4 mx-auto my-12 items-center">
-      <h1>Landing page :)</h1>
-      <Button onClick={() => console.log("Test tailwindcss button clicked")}>
-        Recipeat tailwind button
-      </Button>
+    <div className="App">
+      <form className="search-form">
+        <input className="search-bar" type="text" />
+        <button className="search-button" type="submit">
+          Submit
+        </button>
+      </form>
+      {recipes.map(recipe => (
+        <Recipe />
+      ))}
     </div>
   );
-}
+};
 
 export default App;
