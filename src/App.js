@@ -34,7 +34,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App antialiased text-gray-900">
       <form onSubmit={performSearch} className="search-form">
         <input
           className="search-bar"
@@ -46,15 +46,17 @@ const App = () => {
           Submit
         </button>
       </form>
-      {recipes.map(recipe => (
-        <Recipe
-          key={recipe.recipe.label}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-          ingredients={recipe.recipe.ingredients}
-        />
-      ))}
+      <div className="flex -mx-2 mb-8 flex-wrap">
+        {recipes.map(recipe => (
+          <Recipe
+            key={recipe.recipe.label}
+            title={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+          />
+        ))}
+      </div>
     </div>
   );
 };
