@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Recipe from "./components/Recipe";
+import Navbar from "./components/Navbar";
+import RecipeList from "./components/RecipeList";
 
 const App = () => {
   const APP_ID = "e74fe7a6";
@@ -34,27 +35,22 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <form onSubmit={performSearch} className="search-form">
-        <input
-          className="search-bar"
-          type="text"
-          value={search}
-          onChange={updateSearch}
-        />
-        <button className="search-button" type="submit">
-          Submit
-        </button>
-      </form>
-      {recipes.map(recipe => (
-        <Recipe
-          key={recipe.recipe.label}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-          ingredients={recipe.recipe.ingredients}
-        />
-      ))}
+    <div className="App antialiased text-gray-900">
+      <Navbar></Navbar>
+      <div className="container">
+        <form onSubmit={performSearch} className="search-form">
+          <input
+            className="search-bar"
+            type="text"
+            value={search}
+            onChange={updateSearch}
+          />
+          <button className="search-button" type="submit">
+            Submit
+          </button>
+          <RecipeList recipes={recipes} />
+        </form>
+      </div>
     </div>
   );
 };
