@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Recipe from "./components/Recipe";
 import Navbar from "./components/Navbar";
+import RecipeList from "./components/RecipeList";
 
 const App = () => {
   const APP_ID = "e74fe7a6";
@@ -48,18 +48,8 @@ const App = () => {
           <button className="search-button" type="submit">
             Submit
           </button>
+          <RecipeList recipes={recipes} />
         </form>
-        <div className="flex -mx-2 mb-8 flex-wrap">
-          {recipes.map(recipe => (
-            <Recipe
-              key={recipe.recipe.label}
-              title={recipe.recipe.label}
-              calories={recipe.recipe.calories}
-              image={recipe.recipe.image}
-              ingredients={recipe.recipe.ingredients}
-            />
-          ))}
-        </div>
       </div>
     </div>
   );
