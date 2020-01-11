@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Recipe from "./components/Recipe";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const APP_ID = "e74fe7a6";
@@ -35,27 +36,30 @@ const App = () => {
 
   return (
     <div className="App antialiased text-gray-900">
-      <form onSubmit={performSearch} className="search-form">
-        <input
-          className="search-bar"
-          type="text"
-          value={search}
-          onChange={updateSearch}
-        />
-        <button className="search-button" type="submit">
-          Submit
-        </button>
-      </form>
-      <div className="flex -mx-2 mb-8 flex-wrap">
-        {recipes.map(recipe => (
-          <Recipe
-            key={recipe.recipe.label}
-            title={recipe.recipe.label}
-            calories={recipe.recipe.calories}
-            image={recipe.recipe.image}
-            ingredients={recipe.recipe.ingredients}
+      <Navbar></Navbar>
+      <div className="container">
+        <form onSubmit={performSearch} className="search-form">
+          <input
+            className="search-bar"
+            type="text"
+            value={search}
+            onChange={updateSearch}
           />
-        ))}
+          <button className="search-button" type="submit">
+            Submit
+          </button>
+        </form>
+        <div className="flex -mx-2 mb-8 flex-wrap">
+          {recipes.map(recipe => (
+            <Recipe
+              key={recipe.recipe.label}
+              title={recipe.recipe.label}
+              calories={recipe.recipe.calories}
+              image={recipe.recipe.image}
+              ingredients={recipe.recipe.ingredients}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
