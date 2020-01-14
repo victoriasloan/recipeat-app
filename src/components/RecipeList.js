@@ -1,11 +1,12 @@
 import React from "react";
 import RecipeCard from "./RecipeCard";
 
-const RecipeList = ({ recipes }) => {
+const RecipeList = ({ recipes, onViewRecipeDetailsClicked }) => {
   return (
     <div className="flex -mx-2 mb-8 flex-wrap">
       {recipes.map(recipe => (
         <RecipeCard
+          onViewRecipeDetailsClicked={onViewRecipeDetailsClicked}
           key={recipe.recipe.label}
           title={recipe.recipe.label}
           calories={recipe.recipe.calories}

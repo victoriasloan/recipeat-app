@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import RecipeList from "./components/RecipeList";
+import ViewRecipeDetails from "./components/ViewRecipeDetails";
 
 const App = () => {
   const APP_ID = "e74fe7a6";
@@ -9,6 +10,16 @@ const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [queryString, setQueryString] = useState("chicken");
+
+  const [isViewDetailsDisplayed, setDisplayViewDetails] = useState(false);
+
+  const viewRecipeDetailsClicked = () => {
+    setDisplayViewDetails(true);
+  };
+
+  const backToRecipeListClicked = () => {
+    setDisplayViewDetails(false);
+  };
 
   //only get recipes if queryString changes
   useEffect(() => {
@@ -48,7 +59,16 @@ const App = () => {
           <button className="search-button" type="submit">
             Submit
           </button>
-          <RecipeList recipes={recipes} />
+          {isViewDetailsDisplayed ? (
+            <ViewRecipeDetails
+              onGoBackToRecipesList={backToRecipeListClicked}
+            ></ViewRecipeDetails>
+          ) : (
+            <RecipeList
+              onViewRecipeDetailsClicked={viewRecipeDetailsClicked}
+              recipes={recipes}
+            />
+          )}
         </form>
       </div>
     </div>
