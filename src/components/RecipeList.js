@@ -6,7 +6,7 @@ const RecipeList = ({ recipes, onViewRecipeDetailsClicked }) => {
     <div className="flex -mx-2 mb-8 flex-wrap">
       {recipes.map(recipe => (
         <RecipeCard
-          onViewRecipeDetailsClicked={onViewRecipeDetailsClicked}
+          onViewRecipeDetailsClicked={() => onViewRecipeDetailsClicked(recipe)}
           key={recipe.recipe.label}
           title={recipe.recipe.label}
           calories={recipe.recipe.calories}

@@ -10,11 +10,15 @@ const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [queryString, setQueryString] = useState("chicken");
+  const [selectedRecipe, setSelectedRecipe] = useState({});
 
   const [isViewDetailsDisplayed, setDisplayViewDetails] = useState(false);
 
-  const viewRecipeDetailsClicked = () => {
+  const viewRecipeDetailsClicked = recipe => {
     setDisplayViewDetails(true);
+    setSelectedRecipe(recipe);
+
+    console.log(selectedRecipe, "selectedRecipe");
   };
 
   const backToRecipeListClicked = () => {
@@ -49,27 +53,30 @@ const App = () => {
     <div className="App antialiased text-gray-900">
       <Navbar></Navbar>
       <div className="container">
-        <form onSubmit={performSearch} className="search-form">
-          <input
-            className="search-bar"
-            type="text"
-            value={search}
-            onChange={updateSearch}
-          />
-          <button className="search-button" type="submit">
-            Submit
-          </button>
-          {isViewDetailsDisplayed ? (
-            <ViewRecipeDetails
-              onGoBackToRecipesList={backToRecipeListClicked}
-            ></ViewRecipeDetails>
-          ) : (
+        {isViewDetailsDisplayed ? (
+          <ViewRecipeDetails
+            selectedRecipe={selectedRecipe}
+            onGoBackToRecipesList={backToRecipeListClicked}
+          ></ViewRecipeDetails>
+        ) : (
+          <div>
+            <form onSubmit={performSearch} className="search-form">
+              <input
+                className="search-bar"
+                type="text"
+                value={search}
+                onChange={updateSearch}
+              />
+              <button className="search-button" type="submit">
+                Submit
+              </button>
+            </form>
             <RecipeList
               onViewRecipeDetailsClicked={viewRecipeDetailsClicked}
               recipes={recipes}
             />
-          )}
-        </form>
+          </div>
+        )}
       </div>
     </div>
   );
