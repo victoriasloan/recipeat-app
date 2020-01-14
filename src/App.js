@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import RecipeList from "./components/RecipeList";
+import ViewRecipeDetails from "./components/ViewRecipeDetails";
 
 const App = () => {
   const APP_ID = "e74fe7a6";
@@ -9,6 +10,20 @@ const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [queryString, setQueryString] = useState("chicken");
+  const [selectedRecipe, setSelectedRecipe] = useState({});
+
+  const [isViewDetailsDisplayed, setDisplayViewDetails] = useState(false);
+
+  const viewRecipeDetailsClicked = recipe => {
+    setDisplayViewDetails(true);
+    setSelectedRecipe(recipe);
+
+    console.log(selectedRecipe, "selectedRecipe");
+  };
+
+  const backToRecipeListClicked = () => {
+    setDisplayViewDetails(false);
+  };
 
   //only get recipes if queryString changes
   useEffect(() => {
@@ -38,18 +53,30 @@ const App = () => {
     <div className="App antialiased text-gray-900">
       <Navbar></Navbar>
       <div className="container">
-        <form onSubmit={performSearch} className="search-form">
-          <input
-            className="search-bar"
-            type="text"
-            value={search}
-            onChange={updateSearch}
-          />
-          <button className="search-button" type="submit">
-            Submit
-          </button>
-          <RecipeList recipes={recipes} />
-        </form>
+        {isViewDetailsDisplayed ? (
+          <ViewRecipeDetails
+            selectedRecipe={selectedRecipe}
+            onGoBackToRecipesList={backToRecipeListClicked}
+          ></ViewRecipeDetails>
+        ) : (
+          <div>
+            <form onSubmit={performSearch} className="search-form">
+              <input
+                className="search-bar"
+                type="text"
+                value={search}
+                onChange={updateSearch}
+              />
+              <button className="search-button" type="submit">
+                Submit
+              </button>
+            </form>
+            <RecipeList
+              onViewRecipeDetailsClicked={viewRecipeDetailsClicked}
+              recipes={recipes}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
