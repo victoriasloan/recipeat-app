@@ -2,7 +2,7 @@ import React from "react";
 const RecipeCard = ({ title, calories, image, ingredients }) => {
   return (
     <div className="w-screen md:w-1/3 px-2 py-2">
-      <div className="bg-white border overflow-hidden rounded-lg h-300">
+      <div className="bg-white border overflow-hidden rounded-lg">
         <img className="object-cover h-64 w-full" src={image} alt="" />
         <div className="p-6">
           <h4 className="font-semibold text-lg">{title}</h4>

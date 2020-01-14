@@ -37,13 +37,14 @@ const App = () => {
   return (
     <div className="App antialiased text-gray-900">
       <Navbar></Navbar>
+
       <div className="container">
         <SearchContainer
           onSearchUpdated={updateSearch}
           onSearchPerformed={performSearch}
           searchTerm={search}
         ></SearchContainer>
-        <RecipeList recipes={recipes} />
+        {/* <RecipeList recipes={recipes} /> */}
       </div>
     </div>
   );
