@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import RecipeList from "./components/RecipeList";
 import ViewRecipeDetails from "./components/ViewRecipeDetails";
+import SearchContainer from "./components/SearchContainer";
+import pizzabackground from "./assets/pizzabackground.jpg";
 
 const App = () => {
   const APP_ID = "e74fe7a6";
@@ -25,7 +27,6 @@ const App = () => {
     setDisplayViewDetails(false);
   };
 
-  //only get recipes if queryString changes
   useEffect(() => {
     getRecipes();
   }, [queryString]);
@@ -50,7 +51,10 @@ const App = () => {
   };
 
   return (
-    <div className="App antialiased text-gray-900">
+    <div
+      className="App antialiased text-gray-900 back h-screen"
+      style={{ backgroundImage: `url(${pizzabackground})` }}
+    >
       <Navbar></Navbar>
       <div className="container">
         {isViewDetailsDisplayed ? (
@@ -59,22 +63,16 @@ const App = () => {
             onGoBackToRecipesList={backToRecipeListClicked}
           ></ViewRecipeDetails>
         ) : (
-          <div>
-            <form onSubmit={performSearch} className="search-form">
-              <input
-                className="search-bar"
-                type="text"
-                value={search}
-                onChange={updateSearch}
-              />
-              <button className="search-button" type="submit">
-                Submit
-              </button>
-            </form>
-            <RecipeList
+          <div className="h-56">
+            <SearchContainer
+              onSearchUpdated={updateSearch}
+              onSearchPerformed={performSearch}
+              searchTerm={search}
+            ></SearchContainer>
+            {/* <RecipeList
               onViewRecipeDetailsClicked={viewRecipeDetailsClicked}
               recipes={recipes}
-            />
+            /> */}
           </div>
         )}
       </div>

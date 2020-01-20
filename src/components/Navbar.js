@@ -1,7 +1,7 @@
 import React from "react";
 const Navbar = () => {
   return (
-    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <nav class="flex items-center justify-between flex-wrap p-6">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <svg
           class="fill-current h-8 w-8 mr-2"
@@ -15,7 +15,7 @@ const Navbar = () => {
         <span class="font-semibold text-xl tracking-tight">RecipEAT.</span>
       </div>
       <div class="block lg:hidden">
-        <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+        <button class="flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-white hover:border-white">
           <svg
             class="fill-current h-3 w-3"
             viewBox="0 0 20 20"
@@ -30,19 +30,19 @@ const Navbar = () => {
         <div class="text-sm lg:flex-grow">
           <a
             href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
           >
             Recipes
           </a>
           <a
             href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
           >
             Favourites
           </a>
           <a
             href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white"
           >
             Blog
           </a>
