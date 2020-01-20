@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import RecipeList from "./components/RecipeList";
 import ViewRecipeDetails from "./components/ViewRecipeDetails";
 import SearchContainer from "./components/SearchContainer";
+import pizzabackground from "./assets/pizzabackground.jpg";
 
 const App = () => {
   const APP_ID = "e74fe7a6";
@@ -50,9 +51,11 @@ const App = () => {
   };
 
   return (
-    <div className="App antialiased text-gray-900">
+    <div
+      className="App antialiased text-gray-900 back h-screen"
+      style={{ backgroundImage: `url(${pizzabackground})` }}
+    >
       <Navbar></Navbar>
-
       <div className="container">
         {isViewDetailsDisplayed ? (
           <ViewRecipeDetails
@@ -60,16 +63,16 @@ const App = () => {
             onGoBackToRecipesList={backToRecipeListClicked}
           ></ViewRecipeDetails>
         ) : (
-          <div>
+          <div className="h-56">
             <SearchContainer
               onSearchUpdated={updateSearch}
               onSearchPerformed={performSearch}
               searchTerm={search}
             ></SearchContainer>
-            <RecipeList
+            {/* <RecipeList
               onViewRecipeDetailsClicked={viewRecipeDetailsClicked}
               recipes={recipes}
-            />
+            /> */}
           </div>
         )}
       </div>

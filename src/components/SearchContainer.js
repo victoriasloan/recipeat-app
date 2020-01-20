@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import IngredientSearchPill from "./IngredientSearchPill";
+import pizzabackground from "../assets/pizzabackground.jpg";
 
 const SearchContainer = ({
   onSearchPerformed,
@@ -27,7 +28,7 @@ const SearchContainer = ({
             }}
           />
           <button
-            className="w-full bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg"
+            className="w-full bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg"
             type="submit"
           >
             Search
