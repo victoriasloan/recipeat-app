@@ -11,7 +11,7 @@ const App = () => {
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
-  const [queryString, setQueryString] = useState("chicken");
+  const [queryString, setQueryString] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState({});
 
   const [isViewDetailsDisplayed, setDisplayViewDetails] = useState(false);
@@ -44,15 +44,19 @@ const App = () => {
     setSearch(event.target.value);
   };
 
-  const performSearch = event => {
-    event.preventDefault();
-    setQueryString(search);
+  const performSearch = ingredientList => {
+    const ingredientQueryString = ingredientList.join();
+
+    setQueryString(ingredientQueryString);
+  };
+
+  const clearSearchTerm = () => {
     setSearch("");
   };
 
   return (
     <div
-      className="App antialiased text-gray-900 back h-screen"
+      className="App antialiased text-gray-900 back h-screen bg-left"
       style={{ backgroundImage: `url(${pizzabackground})` }}
     >
       <Navbar></Navbar>
@@ -68,11 +72,12 @@ const App = () => {
               onSearchUpdated={updateSearch}
               onSearchPerformed={performSearch}
               searchTerm={search}
+              clearSearch={clearSearchTerm}
             ></SearchContainer>
-            {/* <RecipeList
+            <RecipeList
               onViewRecipeDetailsClicked={viewRecipeDetailsClicked}
               recipes={recipes}
-            /> */}
+            />
           </div>
         )}
       </div>
