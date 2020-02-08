@@ -5,9 +5,10 @@ import pizzabackground from "../assets/pizzabackground.jpg";
 const SearchContainer = ({
   onSearchPerformed,
   onSearchUpdated,
-  searchTerm
+  searchTerm,
+  clearSearch
 }) => {
-  const [ingredientsList, setIngredientsList] = useState(["chicken"]);
+  const [ingredientsList, setIngredientsList] = useState([]);
 
   return (
     <div className="flex">
@@ -15,7 +16,7 @@ const SearchContainer = ({
         <h4 className="font-semibold text-3xl leading-tight py-5">
           Search for Ingredients and keywords to find recipes
         </h4>
-        <form onSubmit={onSearchPerformed} className="search-form py-5">
+        <div className="search-form py-5">
           <input
             className="border w-full h-12 mb-8"
             type="text"
@@ -24,16 +25,17 @@ const SearchContainer = ({
             onKeyPress={event => {
               if (event.key === "Enter") {
                 setIngredientsList(ingredientsList.concat(searchTerm));
+                clearSearch();
               }
             }}
           />
           <button
             className="w-full bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg"
-            type="submit"
+            onClick={() => onSearchPerformed(ingredientsList)}
           >
             Search
           </button>
-        </form>
+        </div>
       </div>
       <div className="w-1/2 px-10">
         {ingredientsList.map((ingredient, index) => (
