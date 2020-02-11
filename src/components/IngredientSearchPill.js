@@ -1,8 +1,11 @@
 import React from "react";
 
-const IngredientSearchPill = ({ ingredient }) => {
+const IngredientSearchPill = ({ ingredient, removeIngredient }) => {
   return (
-    <button class="inline-block text-sm px-4 py-2 border rounded-full text-white border-white mt-4 mr-4">
+    <button
+      class="inline-block text-sm px-4 py-2 border rounded-full text-white border-white mt-4 mr-4 cursor-pointer"
+      onClick={() => removeIngredient(ingredient)}
+    >
       {ingredient}
     </button>
   );

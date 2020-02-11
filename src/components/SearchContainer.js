@@ -10,6 +10,10 @@ const SearchContainer = ({
 }) => {
   const [ingredientsList, setIngredientsList] = useState([]);
 
+  const removeIngredient = ingredient => {
+    setIngredientsList(ingredientsList.filter(item => item !== ingredient));
+  };
+
   return (
     <div className="md:flex">
       <div className="w-full md:w-1/2 bg-white border overflow-hidden rounded-lg h-auto px-8 py-2">
@@ -33,7 +37,7 @@ const SearchContainer = ({
               }}
             />
             <button
-              class="flex-shrink-0 bg-red-700 hover:bg-red-500 border-red-700 hover:border-red-500 text-sm border-4 text-white py-1 px-2 rounded cursor-pointer"
+              class="flex-shrink-0 bg-red-700 hover:bg-red-500 border-red-700 hover:border-red-500 text-sm border-4 text-white py-1 px-2 rounded cursor-pointer font-bold"
               type="button"
               onClick={() =>
                 setIngredientsList(ingredientsList.concat(searchTerm))
@@ -53,7 +57,11 @@ const SearchContainer = ({
       </div>
       <div className="w-full md:w-1/2 md:px-10">
         {ingredientsList.map((ingredient, index) => (
-          <IngredientSearchPill key={index} ingredient={ingredient} />
+          <IngredientSearchPill
+            key={index}
+            ingredient={ingredient}
+            removeIngredient={() => removeIngredient(ingredient)}
+          />
         ))}
       </div>
     </div>
