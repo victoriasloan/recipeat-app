@@ -10,7 +10,7 @@ const RecipeCard = ({ title, image, onViewRecipeDetailsClicked }) => {
             Low Carb &bull; High Protein
           </div>
           <div onClick={onViewRecipeDetailsClicked}>
-            <h5 className="text-teal-600 font-semibold text-sm cursor-pointer hover:underline">
+            <h5 className="text-red-700 hover:text-red-600 font-semibold text-sm cursor-pointer hover:underline">
               View Recipe
             </h5>
           </div>

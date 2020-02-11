@@ -56,7 +56,7 @@ const App = () => {
 
   return (
     <div
-      className="App antialiased text-gray-900 back h-screen bg-left"
+      className="App antialiased text-gray-900 back h-screen"
       style={{ backgroundImage: `url(${pizzabackground})` }}
     >
       <Navbar></Navbar>
